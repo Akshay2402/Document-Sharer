@@ -7,7 +7,7 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class AuthService {
 
-  private url = 'https://documentsharer.herokuapp.com/';
+  private url = 'https://documentsharer.herokuapp.com';
 
   constructor(
     private http: HttpClient,
