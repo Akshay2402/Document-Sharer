@@ -29,7 +29,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -127,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "DocumentShare"
+  "defaultProject": "DocumentShare",
+  "cli": {
+    "analytics": "7a7aaeb9-95c0-4f22-8d88-8a9e8f508128"
+  }
 }
