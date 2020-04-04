@@ -16,8 +16,16 @@
   <!-- Highlight Card -->
   <div style="display: flex;justify-content: flex-end;margin-bottom: 20px;">
     <div class="imageDiv" *ngFor="let user of users; let i = index">
-      <img src="https://www.w3schools.com/howto/img_avatar.png" ngbTooltip="{{user.email}}" alt="Avatar"
+      <ng-template #list>
+        <div class="d-flex flex-column">
+          <span>{{ user.email}}</span>
+          <span>{{ getDateString(user.last_seen_at) }}</span>
+        </div>
+    </ng-template>
+      <img *ngIf="user.is_online" src="https://www.w3schools.com/howto/img_avatar.png" ngbTooltip="{{user.email}}" alt="Avatar"
         [ngClass]="getClass(user.is_online)" class="avatar image">
+      <img *ngIf="!user.is_online" src="https://www.w3schools.com/howto/img_avatar.png" [ngbTooltip]="list" alt="Avatar"
+      [ngClass]="getClass(user.is_online)" class="avatar image">
     </div>
     <!-- <span class="numberCircle">+9</span> -->
 

@@ -8,6 +8,8 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -127,5 +129,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       default:
         return { image_offline: true };
     }
+  }
+  getDateString(date) {
+    return moment(new Date(date)).format('MMM DD h:mm A');
   }
 }
