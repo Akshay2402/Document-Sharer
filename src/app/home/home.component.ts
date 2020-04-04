@@ -111,7 +111,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         .subscribe((result: any) => {
           this.htmlContent = result.content;
         });
-    }, 10000000000);
+    }, 10000);
   }
 
   ngOnDestroy(): void {
