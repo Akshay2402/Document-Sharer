@@ -55,6 +55,8 @@ export class ForgotPasswordComponent implements OnInit {
     this.authService.resetPassword(resetObj)
       .subscribe(() => {
         this.router.navigateByUrl('/login');
+      }, (err) => {
+        this.error = err.message;
       });
   }
 
@@ -66,5 +68,4 @@ export class ForgotPasswordComponent implements OnInit {
         return { card: true };
     }
   }
-
 }

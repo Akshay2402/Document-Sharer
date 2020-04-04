@@ -13,6 +13,9 @@ import { SignupComponent } from './signup/signup.component';
 import { OtpComponent } from './otp/otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthInterceptor } from './service/auth.interceptor';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,9 @@ import { AuthInterceptor } from './service/auth.interceptor';
     FormsModule,
     AngularEditorModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule,
+    MatSnackBarModule
   ],
   providers: [
     {

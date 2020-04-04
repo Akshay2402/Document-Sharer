@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
+import {
+  MatSnackBar,
+  MatSnackBarConfig,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-otp',
@@ -13,9 +19,16 @@ export class OtpComponent implements OnInit {
   otp: any;
   error = '';
 
+  setAutoHide = true;
+  autoHide = 2000;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public snackBar: MatSnackBar
+
   ) { }
 
   ngOnInit(): void {
@@ -33,16 +46,21 @@ export class OtpComponent implements OnInit {
       otp: this.otp
     };
     this.authService.verifyOtp(otpDetails)
-      .subscribe((userInfo: any) => {
-        console.log('userInfo', userInfo);
-        if (userInfo) {
-          // localStorage.removeItem('userInfo');
-          // localStorage.setItem('userInfo', JSON.stringify(userInfo));
+      .subscribe((res: any) => {
+        if (res) {
+          this.openSnackBar();
           this.router.navigateByUrl('/login');
         }
       }, (err) => {
-        console.log('error', err);
+        this.error = err.message;
       });
   }
 
+  openSnackBar() {
+    const config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    this.snackBar.open('User Registered!!', '', config);
+  }
 }

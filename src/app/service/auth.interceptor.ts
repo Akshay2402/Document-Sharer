@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AuthInterceptor implements HttpInterceptor {
     constructor(private authService: AuthService, private router: Router) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token: string = localStorage.getItem('token');
+        const token: string = JSON.parse(localStorage.getItem('token'));
         if (token) {
             request = request.clone({
                 setHeaders: {

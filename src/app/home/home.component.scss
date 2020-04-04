@@ -320,9 +320,17 @@ svg#clouds {
   backface-visibility: hidden;
 }
 
-.imageDiv:hover .image {
+.image_offline {
   opacity: 0.3;
+  display: block;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
 }
+
+// .imageDiv:hover .image {
+//   opacity: 0.3;
+// }
 
 .imageDiv {
   position: relative;

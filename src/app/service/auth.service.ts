@@ -62,4 +62,24 @@ export class AuthService {
   resetPassword(resetObj) {
     return this.http.post(this.url + '/user/auth/reset_password', resetObj);
   }
+
+  getDocument() {
+    return this.http.get(this.url + '/api/v1/document');
+  }
+
+  createDocument() {
+    return this.http.post(this.url + '/api/v1/document/new', { content: '  ' });
+  }
+
+  updateDocument(document) {
+    return this.http.post(this.url + '/api/v1/document/update', document);
+  }
+
+  shareDocument(shareObj) {
+    return this.http.post(this.url + '/api/v1/document/share', shareObj);
+  }
+
+  userOffline() {
+    return this.http.get(this.url + '/api/v1/user/set_user_offline');
+  }
 }

@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
+import {
+  MatSnackBar,
+  MatSnackBarConfig,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -13,10 +19,17 @@ export class SignupComponent implements OnInit {
   password: string;
   confirmPassword: string;
   error = '';
+  flag = false;
+
+  setAutoHide = true;
+  autoHide = 2000;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void { }
@@ -39,15 +52,31 @@ export class SignupComponent implements OnInit {
     };
     this.authService.register(userDetails)
       .subscribe((userInfo: any) => {
-        console.log('userInfo', userInfo);
         if (userInfo) {
           localStorage.removeItem('userInfo');
           localStorage.setItem('userInfo', JSON.stringify(userInfo));
+          this.openSnackBar();
           this.router.navigateByUrl('/otp');
         }
       }, (err) => {
-        console.log('error', err);
+        this.error = err.message;
       });
+  }
+
+  getClass() {
+    if (this.error.length) {
+      return { card_large: true };
+    } else {
+      return { card: true };
+    }
+  }
+
+  openSnackBar() {
+    const config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    this.snackBar.open('OTP Send To Your Email!!', '', config);
   }
 
 }
