@@ -33,7 +33,7 @@
     "@kolkov/angular-editor": "^1.1.2",
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "bootstrap": "^4.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "ngx-toastr": "^12.0.0",
